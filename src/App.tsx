@@ -13,8 +13,8 @@ const C = {
   orange: "#e67e22",
   green: "#27ae60",
   text: "#f0ece4",
-  textMid: "rgba(240,236,228,0.55)",
-  textDim: "rgba(240,236,228,0.32)",
+  textMid: "rgba(240,236,228,0.7)",
+  textDim: "rgba(240,236,228,0.45)",
   mono: "'DM Mono', monospace",
   serif: "'EB Garamond', Georgia, serif",
 };
@@ -139,7 +139,7 @@ const Tag = ({ children, color = C.gold, bg }: { children: React.ReactNode; colo
     display: "inline-block", padding: "2px 9px",
     background: bg || `${color}18`,
     border: `1px solid ${color}44`,
-    borderRadius: 3, fontSize: 9.5, letterSpacing: "0.12em",
+    borderRadius: 3, fontSize: 10.5, letterSpacing: "0.12em",
     textTransform: "uppercase", color, fontFamily: C.mono,
   }}>{children}</span>
 );
@@ -147,7 +147,7 @@ const Tag = ({ children, color = C.gold, bg }: { children: React.ReactNode; colo
 const Divider = ({ label }: { label?: string }) => (
   <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "28px 0" }}>
     <div style={{ flex: 1, height: 1, background: C.border }} />
-    {label && <span style={{ fontSize: 9.5, letterSpacing: "0.1em", color: C.textDim, fontFamily: C.mono, textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>}
+    {label && <span style={{ fontSize: 10.5, letterSpacing: "0.1em", color: C.textDim, fontFamily: C.mono, textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>}
     <div style={{ flex: 1, height: 1, background: C.border }} />
   </div>
 );
@@ -158,7 +158,7 @@ const YesNoBtn = ({ active, yes, onClick }: { active: boolean; yes: boolean; onC
     border: `1px solid ${active ? (yes ? C.goldBorder : "rgba(90,110,130,0.5)") : C.border}`,
     background: active ? (yes ? C.goldDim : "rgba(80,100,120,0.2)") : "transparent",
     color: active ? (yes ? C.gold : "#7a9ab8") : C.textDim,
-    fontSize: 11, fontWeight: 600, letterSpacing: "0.09em",
+    fontSize: 12, fontWeight: 600, letterSpacing: "0.09em",
     textTransform: "uppercase", fontFamily: C.mono,
   }}>{yes ? "Ja" : "Nej"}</button>
 );
@@ -171,8 +171,8 @@ const QCard = ({ q, answers, onChange }: { q: Question; answers: Record<string, 
       border: `1px solid ${v === "yes" ? C.goldBorder : C.border}`,
       borderRadius: 7, padding: "16px 18px", marginBottom: 8, transition: "all 0.18s",
     }}>
-      <p style={{ margin: "0 0 4px", fontSize: 14, fontWeight: 500, color: C.text, lineHeight: 1.5, fontFamily: C.serif }}>{q.text}</p>
-      <p style={{ margin: "0 0 11px", fontSize: 11.5, color: C.textDim, lineHeight: 1.5, fontFamily: C.mono }}>{q.detail}</p>
+      <p style={{ margin: "0 0 4px", fontSize: 15, fontWeight: 500, color: C.text, lineHeight: 1.5, fontFamily: C.serif }}>{q.text}</p>
+      <p style={{ margin: "0 0 11px", fontSize: 12.5, color: C.textDim, lineHeight: 1.5, fontFamily: C.mono }}>{q.detail}</p>
       <div style={{ display: "flex", gap: 6 }}>
         <YesNoBtn active={v === "yes"} yes onClick={() => onChange(q.id, "yes")} />
         <YesNoBtn active={v === "no"} yes={false} onClick={() => onChange(q.id, "no")} />
@@ -196,13 +196,13 @@ const CheckCard = ({ item, selected, onToggle }: { item: { icon?: string; label:
       display: "flex", alignItems: "center", justifyContent: "center",
       transition: "all 0.14s",
     }}>
-      {selected && <span style={{ color: "#0b0f14", fontSize: 11, fontWeight: 800 }}>✓</span>}
+      {selected && <span style={{ color: "#0b0f14", fontSize: 12, fontWeight: 800 }}>✓</span>}
     </div>
     <div style={{ flex: 1 }}>
-      <p style={{ margin: "0 0 3px", fontSize: 14, fontWeight: 500, color: C.text, fontFamily: C.serif }}>
+      <p style={{ margin: "0 0 3px", fontSize: 15, fontWeight: 500, color: C.text, fontFamily: C.serif }}>
         {item.icon && <span style={{ marginRight: 6 }}>{item.icon}</span>}{item.label}
       </p>
-      <p style={{ margin: 0, fontSize: 11.5, color: C.textDim, lineHeight: 1.5, fontFamily: C.mono }}>{item.desc || item.detail}</p>
+      <p style={{ margin: 0, fontSize: 12.5, color: C.textDim, lineHeight: 1.5, fontFamily: C.mono }}>{item.desc || item.detail}</p>
     </div>
   </div>
 );
@@ -218,7 +218,7 @@ const ProgressBar = ({ step, labels }: { step: number; total: number; labels: st
             transition: "background 0.3s",
           }} />
           <span style={{
-            fontSize: 9, letterSpacing: "0.08em", textTransform: "uppercase",
+            fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase",
             color: i <= step ? C.gold : C.textDim, fontFamily: C.mono,
             display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
           }}>{l}</span>
@@ -234,7 +234,7 @@ const PrimaryBtn = ({ onClick, children, disabled }: { onClick: () => void; chil
     background: disabled ? "rgba(200,168,75,0.08)" : "linear-gradient(135deg,#c8a84b,#9a6820)",
     border: `1px solid ${disabled ? C.goldBorder : "transparent"}`,
     borderRadius: 4, color: disabled ? C.gold : "#0b0f14",
-    fontSize: 11.5, fontWeight: 700, letterSpacing: "0.1em",
+    fontSize: 12.5, fontWeight: 700, letterSpacing: "0.1em",
     textTransform: "uppercase", cursor: disabled ? "not-allowed" : "pointer",
     fontFamily: C.mono, boxShadow: disabled ? "none" : "0 4px 16px rgba(200,168,75,0.18)",
     transition: "all 0.16s", opacity: disabled ? 0.5 : 1,
@@ -245,7 +245,7 @@ const GhostBtn = ({ onClick, children }: { onClick: () => void; children: React.
   <button onClick={onClick} style={{
     padding: "9px 22px", background: "transparent",
     border: `1px solid ${C.border}`, borderRadius: 3,
-    color: C.textDim, fontSize: 11, letterSpacing: "0.07em",
+    color: C.textDim, fontSize: 12, letterSpacing: "0.07em",
     textTransform: "uppercase", cursor: "pointer", fontFamily: C.mono,
   }}>{children}</button>
 );
@@ -304,10 +304,10 @@ export default function App() {
         {/* HEADER */}
         <div style={{ borderBottom: `1px solid ${C.border}`, padding: "32px 20px 24px", textAlign: "center" }}>
           <Tag>Säkerhetspolisen · Säkerhetsskyddslagen 2018:585 · Vägledning jan. 2023</Tag>
-          <h1 style={{ margin: "12px 0 6px", fontSize: "clamp(19px,4vw,26px)", fontWeight: 500, letterSpacing: "-0.01em" }}>
+          <h1 style={{ margin: "12px 0 6px", fontSize: "clamp(20px,4vw,27px)", fontWeight: 500, letterSpacing: "-0.01em" }}>
             Guide: Säkerhetsskydd för er verksamhet
           </h1>
-          <p style={{ margin: 0, fontSize: 14, color: C.textMid, lineHeight: 1.6, maxWidth: 480, marginInline: "auto", padding: "0 10px" }}>
+          <p style={{ margin: 0, fontSize: 15, color: C.textMid, lineHeight: 1.6, maxWidth: 480, marginInline: "auto", padding: "0 10px" }}>
             En stegvis genomgång – från att avgöra om lagen träffar er, till vad en säkerhetsskyddsanalys ska innehålla
           </p>
         </div>
@@ -324,8 +324,8 @@ export default function App() {
               <div style={{ marginBottom: 28 }}>
                 <div style={{ marginBottom: 14 }}>
                   <Tag color={C.red}>Direkta omständigheter — Del A</Tag>
-                  <h2 style={{ margin: "8px 0 4px", fontSize: 17, fontWeight: 500 }}>Lagen träffar er om något av följande stämmer</h2>
-                  <p style={{ margin: 0, fontSize: 13, color: C.textDim, lineHeight: 1.5 }}>
+                  <h2 style={{ margin: "8px 0 4px", fontSize: 18, fontWeight: 500 }}>Lagen träffar er om något av följande stämmer</h2>
+                  <p style={{ margin: 0, fontSize: 14, color: C.textDim, lineHeight: 1.5 }}>
                     Ett Ja räcker – ni bedriver per definition säkerhetskänslig verksamhet.
                   </p>
                 </div>
@@ -338,8 +338,8 @@ export default function App() {
               <div style={{ marginBottom: 28 }}>
                 <div style={{ marginBottom: 14 }}>
                   <Tag color={C.orange}>Indikatorer — Del B</Tag>
-                  <h2 style={{ margin: "8px 0 4px", fontSize: 17, fontWeight: 500 }}>Ni kan bedriva säkerhetskänslig verksamhet om…</h2>
-                  <p style={{ margin: 0, fontSize: 13, color: C.textDim, lineHeight: 1.5 }}>
+                  <h2 style={{ margin: "8px 0 4px", fontSize: 18, fontWeight: 500 }}>Ni kan bedriva säkerhetskänslig verksamhet om…</h2>
+                  <p style={{ margin: 0, fontSize: 14, color: C.textDim, lineHeight: 1.5 }}>
                     Lagen träffar er inte automatiskt – avgörande är om ett angrepp kan medföra nationella skadekonsekvenser.
                   </p>
                 </div>
@@ -350,8 +350,8 @@ export default function App() {
               {needsNational && (
                 <div style={{ padding: "20px 18px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 7, marginBottom: 24 }}>
                   <Tag>Avgörande följdfråga — prop. 2017/18:89</Tag>
-                  <p style={{ margin: "10px 0 4px", fontSize: 15, fontWeight: 500, lineHeight: 1.5 }}>{NATIONAL_Q.text}</p>
-                  <p style={{ margin: "0 0 12px", fontSize: 11.5, color: C.textDim, lineHeight: 1.55, fontFamily: C.mono }}>{NATIONAL_Q.detail}</p>
+                  <p style={{ margin: "10px 0 4px", fontSize: 16, fontWeight: 500, lineHeight: 1.5 }}>{NATIONAL_Q.text}</p>
+                  <p style={{ margin: "0 0 12px", fontSize: 12.5, color: C.textDim, lineHeight: 1.55, fontFamily: C.mono }}>{NATIONAL_Q.detail}</p>
                   <div style={{ display: "flex", gap: 6 }}>
                     <YesNoBtn active={answers["national"] === "yes"} yes onClick={() => setAns("national", "yes")} />
                     <YesNoBtn active={answers["national"] === "no"} yes={false} onClick={() => setAns("national", "no")} />
@@ -363,13 +363,13 @@ export default function App() {
               {screeningDone && (
                 <div style={{ padding: "18px 18px", background: `${verdict.color}10`, border: `1px solid ${verdict.color}40`, borderRadius: 7, marginBottom: 22, textAlign: "center" }}>
                   <Tag color={verdict.color}>{verdict.level}</Tag>
-                  <p style={{ margin: "10px 0 4px", fontSize: 16, fontWeight: 500 }}>
+                  <p style={{ margin: "10px 0 4px", fontSize: 17, fontWeight: 500 }}>
                     {directYes && "Er verksamhet träffas av säkerhetsskyddslagen"}
                     {!directYes && answers["national"] === "yes" && "Er verksamhet träffas sannolikt av lagen"}
                     {isUnclear && "Oklart – fördjupad analys rekommenderas"}
                     {isNotApplicable && "Er verksamhet bedöms inte träffas av lagen"}
                   </p>
-                  <p style={{ margin: 0, fontSize: 13, color: C.textMid, lineHeight: 1.55, maxWidth: 480, marginInline: "auto" }}>
+                  <p style={{ margin: 0, fontSize: 14, color: C.textMid, lineHeight: 1.55, maxWidth: 480, marginInline: "auto" }}>
                     {directYes && "Direkta omständigheter föreligger. Gå vidare för att kartlägga er verksamhets säkerhetsskyddsbehov."}
                     {!directYes && answers["national"] === "yes" && "Indikatorer finns och ett angrepp kan ge nationella konsekvenser. Gå vidare för att strukturera er analys."}
                     {isUnclear && "Indikatorer finns men nationella konsekvenser bedöms inte föreligga. Säkerhetspolisens vägledning ger ytterligare stöd."}
@@ -394,8 +394,8 @@ export default function App() {
             <div>
               <div style={{ marginBottom: 20 }}>
                 <Tag>Steg 2 av 5 i säkerhetsskyddsanalysen</Tag>
-                <h2 style={{ margin: "10px 0 5px", fontSize: 18, fontWeight: 500 }}>Verksamhetsbeskrivning – välj kategorier</h2>
-                <p style={{ margin: 0, fontSize: 13.5, color: C.textDim, lineHeight: 1.55 }}>
+                <h2 style={{ margin: "10px 0 5px", fontSize: 19, fontWeight: 500 }}>Verksamhetsbeskrivning – välj kategorier</h2>
+                <p style={{ margin: 0, fontSize: 14.5, color: C.textDim, lineHeight: 1.55 }}>
                   Specificera utifrån vilken eller vilka av de fem kategorierna er verksamhet är av betydelse för Sveriges säkerhet.
                   En verksamhet kan omfattas av flera kategorier. <strong style={{ color: C.textMid }}>Välj alla som stämmer.</strong>
                 </p>
@@ -410,7 +410,7 @@ export default function App() {
               ))}
 
               {selectedCats.length > 0 && (
-                <div style={{ marginTop: 16, padding: "14px 16px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 6, fontSize: 12.5, color: C.textMid, lineHeight: 1.6, fontFamily: C.mono }}>
+                <div style={{ marginTop: 16, padding: "14px 16px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 6, fontSize: 13.5, color: C.textMid, lineHeight: 1.6, fontFamily: C.mono }}>
                   <strong style={{ color: C.gold }}>Notera:</strong> Kategorin "nationellt samhällsviktig verksamhet" ur säkerhetsskyddsperspektiv är inte detsamma som samhällsviktig verksamhet i allmänhet. Avgörande är om ett antagonistiskt angrepp kan medföra nationella skadekonsekvenser.
                 </div>
               )}
@@ -427,8 +427,8 @@ export default function App() {
             <div>
               <div style={{ marginBottom: 20 }}>
                 <Tag>Steg 2 av 5 i säkerhetsskyddsanalysen – forts.</Tag>
-                <h2 style={{ margin: "10px 0 5px", fontSize: 18, fontWeight: 500 }}>Identifiera och bedöma skyddsvärden</h2>
-                <p style={{ margin: 0, fontSize: 13.5, color: C.textDim, lineHeight: 1.55 }}>
+                <h2 style={{ margin: "10px 0 5px", fontSize: 19, fontWeight: 500 }}>Identifiera och bedöma skyddsvärden</h2>
+                <p style={{ margin: 0, fontSize: 14.5, color: C.textDim, lineHeight: 1.55 }}>
                   Tre typer av skyddsvärden ska identifieras. Välj de typer som finns i er verksamhet och ange högsta nivå.
                 </p>
               </div>
@@ -443,7 +443,7 @@ export default function App() {
                     />
                     {sel && pt.levels.length > 0 && (
                       <div style={{ marginLeft: 16, marginTop: -4, marginBottom: 6, padding: "14px 16px", background: "rgba(255,255,255,0.02)", border: `1px solid ${C.border}`, borderRadius: "0 0 6px 6px", borderTop: "none" }}>
-                        <p style={{ margin: "0 0 8px", fontSize: 11.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.04em" }}>
+                        <p style={{ margin: "0 0 8px", fontSize: 12.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.04em" }}>
                           {pt.id === "uppgifter" ? "Högsta säkerhetsskyddsklass i er verksamhet:" : "Högsta konsekvensnivå för era tillgångar:"}
                         </p>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -457,7 +457,7 @@ export default function App() {
                                   border: `1px solid ${selLv ? C.goldBorder : C.border}`,
                                   background: selLv ? C.goldDim : "transparent",
                                   color: selLv ? C.gold : C.textDim,
-                                  fontSize: 11.5, fontFamily: C.mono,
+                                  fontSize: 12.5, fontFamily: C.mono,
                                 }}>{lv.label}</button>
                             );
                           })}
@@ -472,7 +472,7 @@ export default function App() {
                 <>
                   <Divider label="Perspektiv för skyddsvärdena" />
                   <div style={{ marginBottom: 6 }}>
-                    <p style={{ margin: "0 0 12px", fontSize: 13.5, color: C.textDim, lineHeight: 1.55 }}>
+                    <p style={{ margin: "0 0 12px", fontSize: 14.5, color: C.textDim, lineHeight: 1.55 }}>
                       Bedöm från vilket eller vilka perspektiv era skyddsvärden är skyddsvärda. Klassificerade uppgifter är alltid konfidentiella; anläggningar och system kan ha alla tre.
                     </p>
                     {PERSPECTIVES.map(p => (
@@ -485,7 +485,7 @@ export default function App() {
                   </div>
 
                   {selectedPersp.includes("tillgänglighet") && (
-                    <div style={{ marginTop: 10, padding: "13px 16px", background: "rgba(200,168,75,0.05)", border: `1px solid ${C.goldBorder}`, borderRadius: 6, fontSize: 12.5, color: C.textMid, lineHeight: 1.6, fontFamily: C.mono }}>
+                    <div style={{ marginTop: 10, padding: "13px 16px", background: "rgba(200,168,75,0.05)", border: `1px solid ${C.goldBorder}`, borderRadius: 6, fontSize: 13.5, color: C.textMid, lineHeight: 1.6, fontFamily: C.mono }}>
                       <strong style={{ color: C.gold }}>Tillgänglighet:</strong> Ange i säkerhetsskyddsanalysen den tidsaspekt efter vilken ett bortfall riskerar medföra skada för Sveriges säkerhet (t.ex. "skada uppstår om avbrottet varar längre än 2 timmar").
                     </div>
                   )}
@@ -505,10 +505,10 @@ export default function App() {
               {/* Verdict banner */}
               <div style={{ padding: "22px 20px", background: `${verdict.color}10`, border: `1px solid ${verdict.color}40`, borderRadius: 8, marginBottom: 22, textAlign: "center" }}>
                 <Tag color={verdict.color}>{verdict.level}</Tag>
-                <h2 style={{ margin: "10px 0 6px", fontSize: 19, fontWeight: 500 }}>
+                <h2 style={{ margin: "10px 0 6px", fontSize: 20, fontWeight: 500 }}>
                   {directYes ? "Er verksamhet träffas av säkerhetsskyddslagen" : "Er verksamhet träffas sannolikt av säkerhetsskyddslagen"}
                 </h2>
-                <p style={{ margin: 0, fontSize: 13.5, color: C.textMid, maxWidth: 480, marginInline: "auto", lineHeight: 1.6 }}>
+                <p style={{ margin: 0, fontSize: 14.5, color: C.textMid, maxWidth: 480, marginInline: "auto", lineHeight: 1.6 }}>
                   Nedan: er kartläggning och Säkerhetspolisens femstegsmetod för säkerhetsskyddsanalys.
                 </p>
               </div>
@@ -521,25 +521,25 @@ export default function App() {
 
                 {/* Categories */}
                 <div style={{ padding: "14px 16px", borderBottom: `1px solid ${C.border}` }}>
-                  <p style={{ margin: "0 0 8px", fontSize: 11.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Verksamhetskategorier</p>
+                  <p style={{ margin: "0 0 8px", fontSize: 12.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Verksamhetskategorier</p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {CATEGORIES.filter(c => selectedCats.includes(c.id)).map(c => (
-                      <span key={c.id} style={{ padding: "3px 10px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 3, fontSize: 12, color: C.gold, fontFamily: C.mono }}>{c.icon} {c.label}</span>
+                      <span key={c.id} style={{ padding: "3px 10px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 3, fontSize: 13, color: C.gold, fontFamily: C.mono }}>{c.icon} {c.label}</span>
                     ))}
                   </div>
                 </div>
 
                 {/* Protection values */}
                 <div style={{ padding: "14px 16px", borderBottom: `1px solid ${C.border}` }}>
-                  <p style={{ margin: "0 0 8px", fontSize: 11.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Skyddsvärden</p>
+                  <p style={{ margin: "0 0 8px", fontSize: 12.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Skyddsvärden</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                     {PROTECTION_TYPES.filter(pt => selectedProtTypes.includes(pt.id)).map(pt => {
                       const lvId = selectedLevels[pt.id];
                       const lv = pt.levels.find(l => l.id === lvId);
                       return (
                         <div key={pt.id} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-                          <span style={{ fontSize: 13.5, color: C.textMid }}>{pt.icon} {pt.label}</span>
-                          {lv && <span style={{ fontSize: 11.5, color: C.gold, fontFamily: C.mono, flexShrink: 0 }}>{lv.label}</span>}
+                          <span style={{ fontSize: 14.5, color: C.textMid }}>{pt.icon} {pt.label}</span>
+                          {lv && <span style={{ fontSize: 12.5, color: C.gold, fontFamily: C.mono, flexShrink: 0 }}>{lv.label}</span>}
                         </div>
                       );
                     })}
@@ -549,10 +549,10 @@ export default function App() {
                 {/* Perspectives */}
                 {selectedPersp.length > 0 && (
                   <div style={{ padding: "14px 16px" }}>
-                    <p style={{ margin: "0 0 8px", fontSize: 11.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Skyddsperspektiv</p>
+                    <p style={{ margin: "0 0 8px", fontSize: 12.5, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.05em", textTransform: "uppercase" }}>Skyddsperspektiv</p>
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                       {PERSPECTIVES.filter(p => selectedPersp.includes(p.id)).map(p => (
-                        <span key={p.id} style={{ padding: "3px 10px", background: "rgba(255,255,255,0.04)", border: `1px solid ${C.border}`, borderRadius: 3, fontSize: 12, color: C.textMid, fontFamily: C.mono }}>{p.icon} {p.label}</span>
+                        <span key={p.id} style={{ padding: "3px 10px", background: "rgba(255,255,255,0.04)", border: `1px solid ${C.border}`, borderRadius: 3, fontSize: 13, color: C.textMid, fontFamily: C.mono }}>{p.icon} {p.label}</span>
                       ))}
                     </div>
                   </div>
@@ -563,8 +563,8 @@ export default function App() {
               <div style={{ marginBottom: 18 }}>
                 <div style={{ marginBottom: 14 }}>
                   <Tag>Säkerhetspolisens metod för säkerhetsskyddsanalys</Tag>
-                  <h3 style={{ margin: "8px 0 4px", fontSize: 17, fontWeight: 500 }}>Femstegsmetoden – vad er analys ska innehålla</h3>
-                  <p style={{ margin: 0, fontSize: 13, color: C.textDim, lineHeight: 1.5 }}>
+                  <h3 style={{ margin: "8px 0 4px", fontSize: 18, fontWeight: 500 }}>Femstegsmetoden – vad er analys ska innehålla</h3>
+                  <p style={{ margin: 0, fontSize: 14, color: C.textDim, lineHeight: 1.5 }}>
                     Analysen ska fastställas av verksamhetens högsta chef och uppdateras <strong style={{ color: C.textMid }}>minst vartannat år</strong>. (2 kap. 10 § PMFS 2022:1)
                   </p>
                 </div>
@@ -576,15 +576,15 @@ export default function App() {
                   }}>
                     <div style={{ textAlign: "center" }}>
                       <div style={{ width: 32, height: 32, borderRadius: "50%", background: C.goldDim, border: `1px solid ${C.goldBorder}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                        <span style={{ fontSize: 13, fontWeight: 600, color: C.gold, fontFamily: C.mono }}>{s.num}</span>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: C.gold, fontFamily: C.mono }}>{s.num}</span>
                       </div>
                     </div>
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
-                        <span style={{ fontSize: 14.5, fontWeight: 500, color: C.text, fontFamily: C.serif }}>{s.title}</span>
-                        <span style={{ fontSize: 10, color: C.textDim, fontFamily: C.mono }}>{s.ref}</span>
+                        <span style={{ fontSize: 15.5, fontWeight: 500, color: C.text, fontFamily: C.serif }}>{s.title}</span>
+                        <span style={{ fontSize: 12, color: C.textDim, fontFamily: C.mono }}>{s.ref}</span>
                       </div>
-                      <p style={{ margin: 0, fontSize: 12.5, color: C.textDim, lineHeight: 1.6 }}>{s.desc}</p>
+                      <p style={{ margin: 0, fontSize: 13.5, color: C.textDim, lineHeight: 1.6 }}>{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -602,20 +602,20 @@ export default function App() {
                     { ref: "4 kap. 1 §", text: "Ingå säkerhetsskyddsavtal innan externa aktörer ges tillgång" },
                   ].map((o, i) => (
                     <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                      <span style={{ fontSize: 10, color: C.gold, fontFamily: C.mono, paddingTop: 3, flexShrink: 0, opacity: 0.7 }}>{o.ref}</span>
-                      <span style={{ fontSize: 13.5, color: C.textMid }}>{o.text}</span>
+                      <span style={{ fontSize: 11, color: C.gold, fontFamily: C.mono, paddingTop: 3, flexShrink: 0, opacity: 0.7 }}>{o.ref}</span>
+                      <span style={{ fontSize: 14.5, color: C.textMid }}>{o.text}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Sanction */}
-              <div style={{ padding: "13px 16px", background: "rgba(255,255,255,0.015)", border: `1px solid ${C.border}`, borderRadius: 6, marginBottom: 18, fontSize: 12, color: C.textDim, lineHeight: 1.6, fontFamily: C.mono }}>
+              <div style={{ padding: "13px 16px", background: "rgba(255,255,255,0.015)", border: `1px solid ${C.border}`, borderRadius: 6, marginBottom: 18, fontSize: 13, color: C.textDim, lineHeight: 1.6, fontFamily: C.mono }}>
                 <strong style={{ color: C.textMid }}>7 kap. sanktionsavgifter:</strong> 25 000 – 50 000 000 kr (statliga myndigheter max 10 mkr) vid åsidosättande av skyldigheter. Sanktionsavgiften tillfaller staten.
               </div>
 
               {/* Disclaimer */}
-              <p style={{ fontSize: 11.5, color: "rgba(240,236,228,0.2)", lineHeight: 1.6, fontFamily: C.mono, marginBottom: 22 }}>
+              <p style={{ fontSize: 12.5, color: "rgba(240,236,228,0.2)", lineHeight: 1.6, fontFamily: C.mono, marginBottom: 22 }}>
                 <strong style={{ color: "rgba(240,236,228,0.3)" }}>Obs:</strong> Stöd för självskattning – ersätter inte formell säkerhetsskyddsanalys. Säkerhetsskyddslagen gäller oavsett beredskapsläge. Vid osäkerhet – kontakta Säkerhetspolisen eller er tillsynsmyndighet. Begär beskrivning av dimensionerande antagonistiska förmågor via tillsynsmyndigheten.
               </p>
 
@@ -625,6 +625,27 @@ export default function App() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* FOOTER */}
+        <div style={{ borderTop: `1px solid ${C.border}`, marginTop: 60, padding: "24px 18px", textAlign: "center" }}>
+          <p style={{ margin: "0 auto", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
+            Dataskydd: Ingen data samlas in, lagras eller skickas till någon server – all information stannar lokalt i din webbläsare och försvinner när du stänger sidan.
+          </p>
+          <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
+            Disclaimer: Guiden är baserad på öppen data och skall användas som stöd och vägledning, ej som ersättning för en korrekt säkerhetsskyddsanalys.
+          </p>
+          <p style={{ margin: "16px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
+            Källor:{" "}
+            <a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>Säkerhetsskyddslagen (2018:585)</a>
+            {" · "}
+            <a href="https://sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1709631405797/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO PM – Vad är säkerhetskänslig verksamhet?</a>
+            {" · "}
+            <a href="https://sakerhetspolisen.se/download/18.3baf70bf187108c7cf04b7/1681802201089/Sa%CC%88kerhetskyddsanalys_anpassad.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO Vägledning – Säkerhetsskyddsanalys</a>
+          </p>
+          <span style={{ display: "inline-block", marginTop: 16, fontSize: 12, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.04em" }}>
+            Erik Eliasson — erikeliasson (a) protonmail.com — 2026
+          </span>
         </div>
       </div>
     </>

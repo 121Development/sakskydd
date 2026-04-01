@@ -1,0 +1,16 @@
+/* TEAM */
+Author: Erik Eliasson
+Site: https://sakskydd.se
+Location: Sweden
+
+/* SITE */
+Last update: 2026
+Standards: HTML5, CSS3, ES6+
+Components: React, TypeScript
+Software: VS Code, Claude Code
+Hosting: Cloudflare Workers
+
+/* THANKS */
+Built with Vite (vite.dev)
+Deployed on Cloudflare (cloudflare.com)
+AI assistance by Claude (anthropic.com)
