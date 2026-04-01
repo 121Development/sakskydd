@@ -305,7 +305,7 @@ export default function App() {
         <div style={{ borderBottom: `1px solid ${C.border}`, padding: "32px 20px 24px", textAlign: "center" }}>
           <Tag>Säkerhetspolisen · Säkerhetsskyddslagen 2018:585 · Vägledning jan. 2023</Tag>
           <h1 style={{ margin: "12px 0 6px", fontSize: "clamp(20px,4vw,27px)", fontWeight: 500, letterSpacing: "-0.01em" }}>
-            Guide: Säkerhetsskydd för er verksamhet
+            Guide: Säkerhetsskyddsanalys för er verksamhet
           </h1>
           <p style={{ margin: 0, fontSize: 15, color: C.textMid, lineHeight: 1.6, maxWidth: 480, marginInline: "auto", padding: "0 10px" }}>
             En stegvis genomgång – från att avgöra om lagen träffar er, till vad en säkerhetsskyddsanalys ska innehålla
