@@ -303,7 +303,7 @@ export default function App() {
 
         {/* HEADER */}
         <div style={{ borderBottom: `1px solid ${C.border}`, padding: "32px 20px 24px", textAlign: "center" }}>
-          <Tag>Säkerhetspolisen · Säkerhetsskyddslagen 2018:585 · Vägledning jan. 2023</Tag>
+          <Tag>Säkerhetsskyddslagen 2018:585 · Säkerhetspolisen Vägledning Säkerhetsskyddsanalys</Tag>
           <h1 style={{ margin: "12px 0 6px", fontSize: "clamp(20px,4vw,27px)", fontWeight: 500, letterSpacing: "-0.01em" }}>
             Guide: Säkerhetsskyddsanalys för er verksamhet
           </h1>
@@ -633,7 +633,7 @@ export default function App() {
             Dataskydd: Ingen data samlas in, lagras eller skickas till någon server – all information stannar lokalt i din webbläsare och försvinner när du stänger sidan.
           </p>
           <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
-            Disclaimer: Guiden är baserad på öppen data och skall användas som stöd och vägledning, ej som ersättning för en korrekt säkerhetsskyddsanalys.
+            Disclaimer: Guiden är inte affilierad med Säkerhetspolisen eller Riksdagen och är baserad på öppen data och skall användas som stöd och vägledning, ej som ersättning för en korrekt säkerhetsskyddsanalys.
           </p>
           <p style={{ margin: "16px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
             Källor:{" "}
