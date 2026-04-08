@@ -265,6 +265,79 @@ export default function App() {
   const toggleSet = (setter: React.Dispatch<React.SetStateAction<string[]>>, val: string) => setter(p => p.includes(val) ? p.filter(x => x !== val) : [...p, val]);
   const goTo = (s: number) => { setStep(s); window.scrollTo(0, 0); };
 
+  const downloadMarkdown = () => {
+    const date = new Date().toISOString().slice(0, 10);
+    const lines: string[] = [
+      `# Bedömning av säkerhetskänslig verksamhet`,
+      ``,
+      `**Datum:** ${date}`,
+      `**Bedömningsresultat:** ${verdict.level}`,
+      ``,
+      `---`,
+      ``,
+      `## Screening — Del A (Starka indikationer, svarat JA)`,
+      ``,
+      ...SCREENING_A.filter(q => answers[q.id] === "yes").map(q => `- ${q.text}`),
+      ``,
+      `## Screening — Del B (Indikatorer, svarat JA)`,
+      ``,
+      ...SCREENING_B.filter(q => answers[q.id] === "yes").map(q => `- ${q.text}`),
+      ``,
+    ];
+    if (answers["national"] === "yes") {
+      lines.push(`## Nationell skadekonsekvens`, ``, `- ${NATIONAL_Q.text}`, ``);
+    }
+    lines.push(
+      `---`,
+      ``,
+      `## Verksamhetskategorier`,
+      ``,
+      ...CATEGORIES.filter(c => selectedCats.includes(c.id)).map(c => `- ${c.label}`),
+      ``,
+      `## Skyddsvärden`,
+      ``,
+      ...PROTECTION_TYPES.filter(pt => selectedProtTypes.includes(pt.id)).map(pt => {
+        const lv = pt.levels.find(l => l.id === selectedLevels[pt.id]);
+        return `- **${pt.label}**` + (lv ? ` — ${lv.label}` : ``);
+      }),
+      ``,
+      `## Skyddsperspektiv`,
+      ``,
+      ...PERSPECTIVES.filter(p => selectedPersp.includes(p.id)).map(p => `- ${p.label}`),
+      ``,
+      `---`,
+      ``,
+      `## Femstegsmetoden – vad er analys ska innehålla`,
+      ``,
+      `Säkerhetspolisens metod för säkerhetsskyddsanalys. Analysen ska fastställas av verksamhetens högsta chef och uppdateras **minst vartannat år** (2 kap. 10 § PMFS 2022:1).`,
+      ``,
+      ...ANALYSIS_STEPS.map(s => `${s.num}. **${s.title}** *(${s.ref})* — ${s.desc}`),
+      ``,
+      `---`,
+      ``,
+      `## Omedelbara skyldigheter (2 kap. säkerhetsskyddslagen)`,
+      ``,
+      `- **2 kap. 1 §** Genomför och dokumentera säkerhetsskyddsanalys`,
+      `- **2 kap. 6 §** Anmäl utan dröjsmål till tillsynsmyndigheten`,
+      `- **2 kap. 7 §** Utse säkerhetsskyddschef om det inte är uppenbart obehövligt`,
+      `- **3 kap. 1 §** Säkerhetspröva all personal innan deltagande i säkerhetskänslig verksamhet`,
+      `- **4 kap. 1 §** Ingå säkerhetsskyddsavtal innan externa aktörer ges tillgång`,
+      ``,
+      `**7 kap. sanktionsavgifter:** 25 000 – 50 000 000 kr (statliga myndigheter max 10 mkr) vid åsidosättande av skyldigheter.`,
+      ``,
+      `---`,
+      ``,
+      `*Genererad via sakskydd.se — ersätter inte formell säkerhetsskyddsanalys.*`,
+    );
+    const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `sakskydd-bedomning-${date}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const directYes = SCREENING_A.some(q => answers[q.id] === "yes");
   const indicatorYes = SCREENING_B.filter(q => answers[q.id] === "yes");
   const allADone = SCREENING_A.every(q => answers[q.id]);
@@ -297,6 +370,13 @@ export default function App() {
         ::-webkit-scrollbar-thumb{background:#1e2a38;border-radius:2px}
         details>summary{list-style:none} details>summary::-webkit-details-marker{display:none}
         .hover-card:hover{border-color:rgba(255,255,255,0.12)!important;background:rgba(255,255,255,0.04)!important}
+        @media print {
+          body{background:#fff!important;color:#000!important}
+          div[style]{background:transparent!important;color:#000!important;border-color:#ccc!important}
+          span,p,strong,h1,h2,h3{color:#000!important}
+          button,.no-print{display:none!important}
+          a{color:#000!important;text-decoration:underline!important}
+        }
       `}</style>
 
       <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: C.serif, paddingBottom: 80 }}>
@@ -308,7 +388,7 @@ export default function App() {
             Guide: Bedömning av säkerhetskänslig verksamhet och säkerhetsskyddsanalys
           </h1>
           <p style={{ margin: 0, fontSize: 15, color: C.textMid, lineHeight: 1.6, maxWidth: 520, marginInline: "auto", padding: "0 10px" }}>
-            Ett vägledande stöd för att bedöma om ni kan bedriva säkerhetskänslig verksamhet och för att strukturera en säkerhetsskyddsanalys. Ersätter inte egen rättslig bedömning eller kontakt med tillsynsmyndighet.
+            Ett vägledande stöd för att bedöma om ni träffas av säkerhetsskyddslagen och för att strukturera en säkerhetsskyddsanalys. Ersätter inte egen rättslig bedömning eller kontakt med tillsynsmyndighet.
           </p>
         </div>
 
@@ -326,7 +406,7 @@ export default function App() {
                   <Tag color={C.red}>Starka indikationer — Del A</Tag>
                   <h2 style={{ margin: "8px 0 4px", fontSize: 18, fontWeight: 500 }}>Ni bedriver normalt säkerhetskänslig verksamhet om någon av följande omständigheter föreligger</h2>
                   <p style={{ margin: 0, fontSize: 14, color: C.textDim, lineHeight: 1.5 }}>
-                    Ett ja är normalt en stark indikation på att ni omfattas av säkerhetsskyddslagen. Bedömningen bör ändå dokumenteras i en säkerhetsskyddsanalys.
+                    Ett ja är normalt en stark indikation på att ni träffas av säkerhetsskyddslagen. Bedömningen bör ändå dokumenteras i en säkerhetsskyddsanalys.
                   </p>
                 </div>
                 {SCREENING_A.map(q => <QCard key={q.id} q={q} answers={answers} onChange={setAns} />)}
@@ -387,9 +467,9 @@ export default function App() {
               )}
 
               <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
-                {canProceedToAnalysis && (
-                  <PrimaryBtn onClick={() => goTo(1)}>Kategorisera er verksamhet →</PrimaryBtn>
-                )}
+                <PrimaryBtn onClick={() => goTo(1)} disabled={!canProceedToAnalysis}>
+                  {canProceedToAnalysis ? "Kategorisera er verksamhet →" : "Svara på alla frågor för att gå vidare"}
+                </PrimaryBtn>
                 {(isUnclear || isNotApplicable) && screeningDone && (
                   <GhostBtn onClick={() => { setAnswers({}); }}>Börja om</GhostBtn>
                 )}
@@ -425,7 +505,9 @@ export default function App() {
 
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24 }}>
                 <GhostBtn onClick={() => goTo(0)}>← Tillbaka</GhostBtn>
-                <PrimaryBtn onClick={() => goTo(2)} disabled={selectedCats.length === 0}>Identifiera skyddsvärden →</PrimaryBtn>
+                <PrimaryBtn onClick={() => goTo(2)} disabled={selectedCats.length === 0}>
+                  {selectedCats.length > 0 ? "Identifiera skyddsvärden →" : "Välj minst en kategori för att gå vidare"}
+                </PrimaryBtn>
               </div>
             </div>
           )}
@@ -502,7 +584,9 @@ export default function App() {
 
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24 }}>
                 <GhostBtn onClick={() => goTo(1)}>← Tillbaka</GhostBtn>
-                <PrimaryBtn onClick={() => goTo(3)} disabled={selectedProtTypes.length === 0}>Visa sammanfattning →</PrimaryBtn>
+                <PrimaryBtn onClick={() => goTo(3)} disabled={selectedProtTypes.length === 0}>
+                  {selectedProtTypes.length > 0 ? "Visa sammanfattning →" : "Välj minst ett skyddsvärde för att gå vidare"}
+                </PrimaryBtn>
               </div>
             </div>
           )}
@@ -565,6 +649,11 @@ export default function App() {
                     </div>
                   </div>
                 )}
+              </div>
+
+              <div className="no-print" style={{ display: "flex", gap: 10, justifyContent: "center", marginBottom: 24 }}>
+                <PrimaryBtn onClick={downloadMarkdown}>Ladda ner Markdown</PrimaryBtn>
+                <PrimaryBtn onClick={() => window.print()}>Skriv ut / PDF</PrimaryBtn>
               </div>
 
               {/* 5-step analysis method */}
@@ -635,7 +724,7 @@ export default function App() {
                 <strong style={{ color: "rgba(240,236,228,0.3)" }}>Obs:</strong> Stöd för självskattning – ersätter inte formell säkerhetsskyddsanalys. Säkerhetsskyddslagen gäller oavsett beredskapsläge. Vid osäkerhet – kontakta Säkerhetspolisen eller er tillsynsmyndighet. Begär beskrivning av dimensionerande antagonistiska förmågor via tillsynsmyndigheten.
               </p>
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div className="no-print" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <GhostBtn onClick={() => goTo(2)}>← Tillbaka</GhostBtn>
                 <GhostBtn onClick={() => { setAnswers({}); setSelectedCats([]); setSelectedProtTypes([]); setSelectedLevels({}); setSelectedPersp([]); goTo(0); }}>Börja om</GhostBtn>
               </div>
@@ -662,6 +751,9 @@ export default function App() {
           <span style={{ display: "inline-block", marginTop: 16, fontSize: 12, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.04em" }}>
             Erik Eliasson — erikeliasson (a) protonmail.com — 2026
           </span>
+          <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono }}>
+            <a href="https://github.com/121Development/sakskydd" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>GitHub</a>
+          </p>
         </div>
       </div>
     </>

@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# sakskydd.se
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Webbverktyg för att bedöma om en verksamhet bedriver säkerhetskänslig verksamhet enligt säkerhetsskyddslagen (2018:585).
 
-Currently, two official plugins are available:
+## Funktionalitet
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Screening i två delar** — Del A (starka indikationer) och Del B (indikatorer) med ja/nej-frågor baserade på Säkerhetspolisens vägledning
+- **Nationell skadekonsekvens** — uppföljningsfråga vid behov
+- **Verksamhetskategorier** — välj vilka kategorier av säkerhetskänslig verksamhet som är relevanta
+- **Skyddsvärden och nivåer** — identifiera skyddsvärden och bedöm konsekvensnivå
+- **Skyddsperspektiv** — informationssäkerhet, fysisk säkerhet, personalsäkerhet
+- **Resultat med bedömning** — sammanställning med Femstegsmetoden, omedelbara skyldigheter och sanktionsavgifter
+- **Markdown-export** — ladda ner bedömningen som Markdown-fil
+- **Utskriftsvänlig** — anpassad för print via webbläsaren
 
-## React Compiler
+## Teknikstack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + TypeScript
+- Vite
+- Inga externa beroenden utöver React — all styling är inline
 
-## Expanding the ESLint configuration
+## Dataskydd
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ingen data samlas in, lagras eller skickas till någon server. All information stannar lokalt i webbläsaren och försvinner när sidan stängs.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Disclaimer
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Guiden är inte affilierad med Säkerhetspolisen eller Riksdagen och är baserad på öppen data. Den ska användas som stöd och vägledning, ej som ersättning för en korrekt säkerhetsskyddsanalys.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Källor
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- [Säkerhetsskyddslagen (2018:585)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/)
+- [SÄPO PM – Vad är säkerhetskänslig verksamhet?](https://sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1709631405797/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf)
+- [SÄPO Vägledning – Säkerhetsskyddsanalys](https://sakerhetspolisen.se/download/18.3baf70bf187108c7cf04b7/1681802201089/Sa%CC%88kerhetskyddsanalys_anpassad.pdf)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Licens
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Erik Eliasson — erikeliasson (a) protonmail.com
