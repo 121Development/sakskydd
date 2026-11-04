@@ -60,7 +60,6 @@ const SCREENING_A: Question[] = [
   { id: "international", text: "Omfattas ni av ett för Sverige förpliktande internationellt åtagande om säkerhetsskydd?", detail: "Till exempel krav som följer av internationell säkerhetsskyddssamverkan, såsom hantering av EU- eller NATO-klassificerade uppgifter. (1 kap. 1 §)" },
   { id: "signal", text: "Förfogar ni över signalskyddsmaterial eller bedriver ni verksamhet med signalskydd?", detail: "Till exempel godkända kryptosystem eller andra funktioner för skydd av säkerhetskänslig information." },
   { id: "secclass", text: "Har ni befattningar eller uppdrag som kräver säkerhetsprövning och placering i säkerhetsklass?", detail: "Säkerhetsklass kan bli aktuell för personer som deltar i säkerhetskänslig verksamhet och där befattningen kräver särskilt skydd." },
-  { id: "exposure", text: "Kan externa aktörer genom upphandling, avtal eller samverkan få tillgång till säkerhetskänslig verksamhet eller säkerhetsskyddsklassificerade uppgifter hos er?", detail: "Det kan utlösa krav på säkerhetsskyddsavtal och andra skyddsåtgärder innan tillgång ges. Det kan även omfatta underleverantörer. (4 kap. säkerhetsskyddslagen)" },
 ];
 
 const SCREENING_B: Question[] = [
@@ -71,7 +70,7 @@ const SCREENING_B: Question[] = [
   { id: "damage_generating", text: "Kan en antagonistisk handling mot er verksamhet orsaka följdskador på andra verksamheter av betydelse för Sveriges säkerhet, exempelvis genom påverkan på liv, hälsa eller kritisk infrastruktur?", detail: "T.ex. kärntekniska verksamheter, stora dammar, kemiska industrier. (Skadegenererande verksamhet)" },
   { id: "economy", text: "Är er verksamhet väsentlig för Sveriges betalningsförmåga eller finansiella stabilitet på nationell nivå?", detail: "Till exempel centrala funktioner i betalningsinfrastrukturen eller andra verksamheter vars bortfall kan påverka Sveriges finansiella stabilitet nationellt." },
   { id: "secclass_decides", text: "Är ni en statlig myndighet som beslutar om placering i säkerhetsklass?", detail: "Om en statlig myndighet har fått mandat att besluta om placering i säkerhetsklass finns det anledning att analysera om verksamheten är av betydelse för Sveriges säkerhet." },
-  { id: "multiple_contracts", text: "Är ni leverantör till flera verksamhetsutövare där uppdragen omfattas av säkerhetsskyddsavtal eller motsvarande säkerhetsskyddskrav?", detail: "En leverantör med flera uppdrag mot säkerhetskänsliga verksamheter kan behöva analysera om den samlade verksamheten medför att även leverantören själv bedriver säkerhetskänslig verksamhet." },
+  { id: "multiple_contracts", text: "Är ni leverantör till en eller flera verksamhetsutövare där uppdragen omfattas av säkerhetsskyddsavtal eller motsvarande säkerhetsskyddskrav?", detail: "Lagen gäller den som till någon del bedriver säkerhetskänslig verksamhet. En leverantör som utför en del av en säkerhetskänslig verksamhet, eller har flera sådana uppdrag, kan därför behöva analysera om även leverantören själv bedriver säkerhetskänslig verksamhet." },
   { id: "protected_obj", text: "Har ni fått beslut om skyddsobjekt?", detail: "Skyddsobjekt innebär inte automatiskt att verksamheten är säkerhetskänslig enligt säkerhetsskyddslagen, men det är en stark anledning att göra en fördjupad bedömning." },
 ];
 
@@ -130,6 +129,21 @@ const ANALYSIS_STEPS = [
   { num: 4, title: "Sårbarhetsbedömning", ref: "2 kap. 8 § PMFS 2022:1", desc: "Identifiera luckor i befintligt skydd i förhållande till författningskrav och antagonistiska förmågor. Tänk som en antagonist. Kan innefatta tekniska tester, granskning av rutiner, fysisk genomlysning och analys av tidigare incidenter." },
   { num: 5, title: "Säkerhetsskyddsåtgärder och plan", ref: "2 kap. 9 §, 12 § PMFS 2022:1", desc: "Bestäm åtgärder inom informationssäkerhet, fysisk säkerhet och personalsäkerhet. Sammanställ dessa i en säkerhetsskyddsplan med ansvariga funktioner och tidplan. Säkerhetsskyddschefen bör leda och samordna arbetet, om sådan funktion ska finnas i verksamheten." },
 ];
+
+// Lagens lydelse som texten bygger på
+const LAW_VERSION = "i lydelse t.o.m. SFS 2026:764";
+
+const OBLIGATIONS = [
+  { ref: "2 kap. 1 §", text: "Genomför och dokumentera en säkerhetsskyddsanalys samt planera och vidta de säkerhetsskyddsåtgärder som behövs" },
+  { ref: "2 kap. 6 §", text: "Anmäl till tillsynsmyndigheten utan dröjsmål när ni börjar bedriva säkerhetskänslig verksamhet, och när den upphör" },
+  { ref: "2 kap. 7 §", text: "Utse en säkerhetsskyddschef direkt under verksamhetens högsta ledning, om det inte är uppenbart obehövligt" },
+  { ref: "3 kap. 1 §", text: "Säkerhetspröva den som ska delta i den säkerhetskänsliga verksamheten innan deltagandet påbörjas" },
+  { ref: "4 kap. 1 §", text: "Gör en särskild säkerhetsskyddsbedömning och lämplighetsprövning och ingå säkerhetsskyddsavtal innan en extern part (även underleverantör) genom upphandling, avtal eller samarbete får tillgång till uppgifter i säkerhetsskyddsklass konfidentiell eller högre eller motsvarande verksamhet. På nivån hemlig eller högre ska ni även samråda med tillsynsmyndigheten." },
+  { ref: "4 kap. 1 a §", text: "Anmäl utan dröjsmål till tillsynsmyndigheten pågående upphandlingar, avtal och samarbeten där motparten kan få tillgång på nivån konfidentiell eller högre men där säkerhetsskyddsavtal inte krävs enligt 4 kap. 1 §. Det gäller t.ex. förfaranden som påbörjades före 1 december 2021 (även med säkerhetsskyddsavtal enligt äldre regler) eller innan verksamheten bedömdes som säkerhetskänslig. Skyldigheten ska vara uppfylld från 1 januari 2027." },
+  { ref: "4 kap. 13 §", text: "Gör en särskild säkerhetsskyddsbedömning, lämplighetsprövning och samråd med tillsynsmyndigheten innan ni överlåter säkerhetskänslig verksamhet eller egendom av betydelse för Sveriges säkerhet. Sedan 1 juli 2026 omfattas även fast egendom, inklusive överföring genom fastighetsbildning." },
+];
+
+const SANCTION_TEXT = "25 000 – 50 000 000 kr (statliga myndigheter, kommuner och regioner högst 10 000 000 kr) vid åsidosättande av skyldigheter, bl.a. utebliven anmälan av pågående förfaranden enligt 4 kap. 1 a §. Sanktionsavgiften tillfaller staten.";
 
 // ─── COMPONENTS ───────────────────────────────────────────────────────────
 
@@ -284,7 +298,7 @@ export default function App() {
       ...SCREENING_B.filter(q => answers[q.id] === "yes").map(q => `- ${q.text}`),
       ``,
     ];
-    if (answers["national"] === "yes") {
+    if (needsNational && answers["national"] === "yes") {
       lines.push(`## Nationell skadekonsekvens`, ``, `- ${NATIONAL_Q.text}`, ``);
     }
     lines.push(
@@ -315,19 +329,15 @@ export default function App() {
       ``,
       `---`,
       ``,
-      `## Omedelbara skyldigheter (2 kap. säkerhetsskyddslagen)`,
+      `## Skyldigheter enligt säkerhetsskyddslagen`,
       ``,
-      `- **2 kap. 1 §** Genomför och dokumentera säkerhetsskyddsanalys`,
-      `- **2 kap. 6 §** Anmäl utan dröjsmål till tillsynsmyndigheten`,
-      `- **2 kap. 7 §** Utse säkerhetsskyddschef om det inte är uppenbart obehövligt`,
-      `- **3 kap. 1 §** Säkerhetspröva all personal innan deltagande i säkerhetskänslig verksamhet`,
-      `- **4 kap. 1 §** Ingå säkerhetsskyddsavtal innan externa aktörer ges tillgång`,
+      ...OBLIGATIONS.map(o => `- **${o.ref}** ${o.text}`),
       ``,
-      `**7 kap. sanktionsavgifter:** 25 000 – 50 000 000 kr (statliga myndigheter max 10 mkr) vid åsidosättande av skyldigheter.`,
+      `**7 kap. sanktionsavgifter:** ${SANCTION_TEXT}`,
       ``,
       `---`,
       ``,
-      `*Genererad via sakskydd.se — ersätter inte formell säkerhetsskyddsanalys.*`,
+      `*Genererad via sakskydd.se — utgår från säkerhetsskyddslagen (2018:585) ${LAW_VERSION}. Ersätter inte formell säkerhetsskyddsanalys.*`,
     );
     const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
@@ -342,22 +352,27 @@ export default function App() {
   const indicatorYes = SCREENING_B.filter(q => answers[q.id] === "yes");
   const allADone = SCREENING_A.every(q => answers[q.id]);
   const allBDone = SCREENING_B.every(q => answers[q.id]);
-  const needsNational = !directYes && indicatorYes.length > 0;
-  const nationalAnswered = answers["national"] !== undefined;
-  const screeningDone = allADone && allBDone && (!needsNational || nationalAnswered);
+  // Följdfrågan om nationella skadekonsekvenser ställs alltid om Del A inte träffar,
+  // eftersom även en verksamhet utan indikatorer i Del B kan få nationella följdverkningar.
+  const needsNational = !directYes;
+  const showNational = needsNational && (indicatorYes.length > 0 || (allADone && allBDone));
+  const national = needsNational ? answers["national"] : undefined;
+  const screeningDone = allADone && allBDone && (!needsNational || national !== undefined);
 
-  const isApplicable = directYes || (indicatorYes.length > 0 && answers["national"] === "yes");
-  const isUnclear = !directYes && indicatorYes.length > 0 && answers["national"] === "no";
-  const isNotApplicable = allADone && allBDone && !directYes && indicatorYes.length === 0;
+  const isIndicated = !directYes && national === "yes";
+  const isApplicable = directYes || isIndicated;
+  const isUnclear = !directYes && indicatorYes.length > 0 && national === "no";
+  const isNotApplicable = screeningDone && !directYes && indicatorYes.length === 0 && national === "no";
 
   const getVerdict = () => {
     if (directYes) return { level: "STARK INDIKATION", color: C.red };
-    if (indicatorYes.length > 0 && answers["national"] === "yes") return { level: "INDIKATION", color: C.orange };
+    if (isIndicated) return { level: "INDIKATION", color: C.orange };
     if (isUnclear) return { level: "OSÄKERT", color: C.gold };
     return { level: "LÅG INDIKATION", color: C.green };
   };
 
-  const canProceedToAnalysis = isApplicable && screeningDone;
+  // Även ett osäkert utfall ska kunna dokumenteras
+  const canProceedToAnalysis = screeningDone && (isApplicable || isUnclear);
 
   const verdict = getVerdict();
 
@@ -430,12 +445,12 @@ export default function App() {
               <div style={{ padding: "16px 18px", background: "rgba(255,255,255,0.02)", border: `1px solid ${C.border}`, borderRadius: 7, marginBottom: 24 }}>
                 <Tag color={C.textDim}>Särskild skyldighet vid överlåtelse</Tag>
                 <p style={{ margin: "10px 0 0", fontSize: 14.5, color: C.textMid, lineHeight: 1.6 }}>
-                  Om ni avser att överlåta säkerhetskänslig verksamhet eller egendom av betydelse för Sveriges säkerhet gäller särskilda regler om säkerhetsskyddsbedömning och samråd.
+                  Om ni avser att överlåta säkerhetskänslig verksamhet eller egendom av betydelse för Sveriges säkerhet ska ni göra en särskild säkerhetsskyddsbedömning och lämplighetsprövning samt samråda med tillsynsmyndigheten. Sedan 1 juli 2026 gäller detta även fast egendom, inklusive överföring genom fastighetsbildning. (4 kap. 13 §)
                 </p>
               </div>
 
               {/* National follow-up */}
-              {needsNational && (
+              {showNational && (
                 <div style={{ padding: "20px 18px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 7, marginBottom: 24 }}>
                   <Tag>Avgörande följdfråga — prop. 2017/18:89</Tag>
                   <p style={{ margin: "10px 0 4px", fontSize: 16, fontWeight: 500, lineHeight: 1.5 }}>{NATIONAL_Q.text}</p>
@@ -453,14 +468,14 @@ export default function App() {
                   <Tag color={verdict.color}>{verdict.level}</Tag>
                   <p style={{ margin: "10px 0 4px", fontSize: 17, fontWeight: 500 }}>
                     {directYes && "Det finns starka indikationer på att ni omfattas av säkerhetsskyddslagen"}
-                    {!directYes && answers["national"] === "yes" && "Det finns indikationer på att ni kan omfattas av säkerhetsskyddslagen"}
+                    {isIndicated && "Det finns indikationer på att ni kan omfattas av säkerhetsskyddslagen"}
                     {isUnclear && "Bedömningen är osäker – fördjupad analys behövs"}
                     {isNotApplicable && "Nuvarande svar ger låg indikation på att ni omfattas av lagen"}
                   </p>
                   <p style={{ margin: 0, fontSize: 14, color: C.textMid, lineHeight: 1.55, maxWidth: 480, marginInline: "auto" }}>
                     {directYes && "En eller flera starka indikationer finns. Nästa steg är att dokumentera en säkerhetsskyddsanalys och vid behov kontakta tillsynsmyndigheten."}
-                    {!directYes && answers["national"] === "yes" && "Indikatorer finns och ett antagonistiskt angrepp kan ge nationella skadekonsekvenser. Ni bör gå vidare med en dokumenterad säkerhetsskyddsanalys."}
-                    {isUnclear && "Indikatorer finns, men svaren ger inte stöd för att nationella skadekonsekvenser föreligger. Bedömningen bör ändå dokumenteras och omprövas vid förändringar i verksamheten."}
+                    {isIndicated && "Ett antagonistiskt angrepp kan enligt era svar ge nationella skadekonsekvenser. Ni bör gå vidare med en dokumenterad säkerhetsskyddsanalys."}
+                    {isUnclear && "Indikatorer finns, men svaren ger inte stöd för att nationella skadekonsekvenser föreligger. Bedömningen bör ändå dokumenteras och omprövas vid förändringar i verksamheten – ni kan gå vidare och strukturera underlaget."}
                     {isNotApplicable && "Inga tydliga indikationer har identifierats utifrån nuvarande svar. Det ersätter inte en egen bedömning och situationen kan förändras över tid."}
                   </p>
                 </div>
@@ -468,7 +483,7 @@ export default function App() {
 
               <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
                 <PrimaryBtn onClick={() => goTo(1)} disabled={!canProceedToAnalysis}>
-                  {canProceedToAnalysis ? "Kategorisera er verksamhet →" : "Svara på alla frågor för att gå vidare"}
+                  {canProceedToAnalysis ? "Kategorisera er verksamhet →" : screeningDone ? "Låg indikation – ingen fortsatt analys föreslås" : "Svara på alla frågor för att gå vidare"}
                 </PrimaryBtn>
                 {(isUnclear || isNotApplicable) && screeningDone && (
                   <GhostBtn onClick={() => { setAnswers({}); }}>Börja om</GhostBtn>
@@ -481,7 +496,7 @@ export default function App() {
           {step === 1 && (
             <div>
               <div style={{ marginBottom: 20 }}>
-                <Tag>Steg 2 av 5 i säkerhetsskyddsanalysen</Tag>
+                <Tag>Steg 1 av 5 i säkerhetsskyddsanalysen</Tag>
                 <h2 style={{ margin: "10px 0 5px", fontSize: 19, fontWeight: 500 }}>Verksamhetsbeskrivning – välj kategorier</h2>
                 <p style={{ margin: 0, fontSize: 14.5, color: C.textDim, lineHeight: 1.55 }}>
                   Om ni bedömer att verksamheten kan vara säkerhetskänslig, specificera utifrån vilken eller vilka kategorier den kan vara av betydelse för Sveriges säkerhet.
@@ -516,7 +531,7 @@ export default function App() {
           {step === 2 && (
             <div>
               <div style={{ marginBottom: 20 }}>
-                <Tag>Steg 2 av 5 i säkerhetsskyddsanalysen – forts.</Tag>
+                <Tag>Steg 2 av 5 i säkerhetsskyddsanalysen</Tag>
                 <h2 style={{ margin: "10px 0 5px", fontSize: 19, fontWeight: 500 }}>Identifiera och bedöma skyddsvärden</h2>
                 <p style={{ margin: 0, fontSize: 14.5, color: C.textDim, lineHeight: 1.55 }}>
                   Tre typer av skyddsvärden ska identifieras. Välj de typer som finns i er verksamhet och ange högsta nivå.
@@ -598,7 +613,7 @@ export default function App() {
               <div style={{ padding: "22px 20px", background: `${verdict.color}10`, border: `1px solid ${verdict.color}40`, borderRadius: 8, marginBottom: 22, textAlign: "center" }}>
                 <Tag color={verdict.color}>{verdict.level}</Tag>
                 <h2 style={{ margin: "10px 0 6px", fontSize: 20, fontWeight: 500 }}>
-                  {directYes ? "Det finns starka indikationer på att ni omfattas av säkerhetsskyddslagen" : "Det finns indikationer på att ni kan omfattas av säkerhetsskyddslagen"}
+                  {directYes ? "Det finns starka indikationer på att ni omfattas av säkerhetsskyddslagen" : isIndicated ? "Det finns indikationer på att ni kan omfattas av säkerhetsskyddslagen" : "Bedömningen är osäker – dokumentera och ompröva den"}
                 </h2>
                 <p style={{ margin: 0, fontSize: 14.5, color: C.textMid, maxWidth: 480, marginInline: "auto", lineHeight: 1.6 }}>
                   Nedan: er kartläggning och Säkerhetspolisens femstegsmetod för säkerhetsskyddsanalys.
@@ -691,21 +706,15 @@ export default function App() {
               <div style={{ padding: "16px 18px", background: C.goldDim, border: `1px solid ${C.goldBorder}`, borderRadius: 7, marginBottom: 16 }}>
                 <Tag color={C.gold}>Lagkrav om bedömningen pekar på säkerhetskänslig verksamhet</Tag>
                 <p style={{ margin: "10px 0 0", fontSize: 14.5, color: C.textMid, lineHeight: 1.6 }}>
-                  Om ni bedriver säkerhetskänslig verksamhet ska ni dokumentera en säkerhetsskyddsanalys, planera och vidta säkerhetsskyddsåtgärder, anmäla verksamheten till tillsynsmyndigheten utan dröjsmål och ha en säkerhetsskyddschef om det inte är uppenbart obehövligt.
+                  Lagen gäller den som till någon del bedriver säkerhetskänslig verksamhet. Om ni bedriver säkerhetskänslig verksamhet ska ni dokumentera en säkerhetsskyddsanalys, planera och vidta säkerhetsskyddsåtgärder, anmäla verksamheten till tillsynsmyndigheten utan dröjsmål och ha en säkerhetsskyddschef om det inte är uppenbart obehövligt.
                 </p>
               </div>
 
               {/* Key obligations */}
               <div style={{ padding: "16px 18px", background: `${C.red}09`, border: `1px solid rgba(192,57,43,0.2)`, borderRadius: 7, marginBottom: 16 }}>
-                <Tag color={C.red}>Omedelbara skyldigheter (2 kap. säkerhetsskyddslagen)</Tag>
+                <Tag color={C.red}>Skyldigheter enligt säkerhetsskyddslagen</Tag>
                 <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
-                  {[
-                    { ref: "2 kap. 1 §", text: "Genomför och dokumentera säkerhetsskyddsanalys" },
-                    { ref: "2 kap. 6 §", text: "Anmäl utan dröjsmål till tillsynsmyndigheten" },
-                    { ref: "2 kap. 7 §", text: "Utse säkerhetsskyddschef om det inte är uppenbart obehövligt" },
-                    { ref: "3 kap. 1 §", text: "Säkerhetspröva all personal innan deltagande i säkerhetskänslig verksamhet" },
-                    { ref: "4 kap. 1 §", text: "Ingå säkerhetsskyddsavtal innan externa aktörer ges tillgång" },
-                  ].map((o, i) => (
+                  {OBLIGATIONS.map((o, i) => (
                     <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                       <span style={{ fontSize: 11, color: C.gold, fontFamily: C.mono, paddingTop: 3, flexShrink: 0, opacity: 0.7 }}>{o.ref}</span>
                       <span style={{ fontSize: 14.5, color: C.textMid }}>{o.text}</span>
@@ -716,7 +725,7 @@ export default function App() {
 
               {/* Sanction */}
               <div style={{ padding: "13px 16px", background: "rgba(255,255,255,0.015)", border: `1px solid ${C.border}`, borderRadius: 6, marginBottom: 18, fontSize: 13, color: C.textDim, lineHeight: 1.6, fontFamily: C.mono }}>
-                <strong style={{ color: C.textMid }}>7 kap. sanktionsavgifter:</strong> 25 000 – 50 000 000 kr (statliga myndigheter max 10 mkr) vid åsidosättande av skyldigheter. Sanktionsavgiften tillfaller staten.
+                <strong style={{ color: C.textMid }}>7 kap. sanktionsavgifter:</strong> {SANCTION_TEXT}
               </div>
 
               {/* Disclaimer */}
@@ -742,11 +751,14 @@ export default function App() {
           </p>
           <p style={{ margin: "16px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
             Källor:{" "}
-            <a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>Säkerhetsskyddslagen (2018:585)</a>
+            <a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>Säkerhetsskyddslagen (2018:585) {LAW_VERSION}</a>
             {" · "}
             <a href="https://sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1709631405797/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO PM – Vad är säkerhetskänslig verksamhet?</a>
             {" · "}
             <a href="https://sakerhetspolisen.se/download/18.3baf70bf187108c7cf04b7/1681802201089/Sa%CC%88kerhetskyddsanalys_anpassad.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO Vägledning – Säkerhetsskyddsanalys</a>
+          </p>
+          <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
+            Säkerhetspolisens vägledningar (2023–2024) är äldre än lagändringarna 2026 om pågående förfaranden och fast egendom. Guiden utgår från lagens lydelse där de skiljer sig.
           </p>
           <span style={{ display: "inline-block", marginTop: 16, fontSize: 12, color: C.textDim, fontFamily: C.mono, letterSpacing: "0.04em" }}>
             Erik Eliasson — erikeliasson (a) protonmail.com — 2026

@@ -8,8 +8,8 @@ Webbverktyg för att bedöma om en verksamhet bedriver säkerhetskänslig verksa
 - **Nationell skadekonsekvens** — uppföljningsfråga vid behov
 - **Verksamhetskategorier** — välj vilka kategorier av säkerhetskänslig verksamhet som är relevanta
 - **Skyddsvärden och nivåer** — identifiera skyddsvärden och bedöm konsekvensnivå
-- **Skyddsperspektiv** — informationssäkerhet, fysisk säkerhet, personalsäkerhet
-- **Resultat med bedömning** — sammanställning med Femstegsmetoden, omedelbara skyldigheter och sanktionsavgifter
+- **Skyddsperspektiv** — konfidentialitet, riktighet, tillgänglighet
+- **Resultat med bedömning** — sammanställning med Femstegsmetoden, skyldigheter enligt lagen (i lydelse t.o.m. SFS 2026:764) och sanktionsavgifter
 - **Markdown-export** — ladda ner bedömningen som Markdown-fil
 - **Utskriftsvänlig** — anpassad för print via webbläsaren
 
