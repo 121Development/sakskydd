@@ -12,12 +12,17 @@ Webbverktyg för att bedöma om en verksamhet bedriver säkerhetskänslig verksa
 - **Resultat med bedömning** — sammanställning med Femstegsmetoden, skyldigheter enligt lagen (i lydelse t.o.m. SFS 2026:764) och sanktionsavgifter
 - **Markdown-export** — ladda ner bedömningen som Markdown-fil
 - **Utskriftsvänlig** — anpassad för print via webbläsaren
+- **Offlineversion** — hela guiden som en enda HTML-fil (`/sakskydd-offline.html`) som kan öppnas i webbläsaren utan internetuppkoppling
 
 ## Teknikstack
 
 - React + TypeScript
 - Vite
 - Inga externa beroenden utöver React — all styling är inline
+
+## Bygga
+
+`pnpm build` bygger både webbplatsen och offlinefilen `dist/client/sakskydd-offline.html` (via `vite build --mode offline`, med JavaScript, CSS och typsnitt inbäddade). Typsnitten levereras från egen server i båda versionerna, så inga anrop görs till Google Fonts.
 
 ## Dataskydd
 

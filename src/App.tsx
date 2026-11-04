@@ -19,6 +19,9 @@ const C = {
   serif: "'EB Garamond', Georgia, serif",
 };
 
+// Set when built with `vite build --mode offline`
+const IS_OFFLINE = import.meta.env.MODE === "offline";
+
 // ─── DATA ──────────────────────────────────────────────────────────────────
 
 interface Question {
@@ -379,7 +382,6 @@ export default function App() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
         *{box-sizing:border-box} body{margin:0;background:${C.bg}}
         ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:${C.bg}}
         ::-webkit-scrollbar-thumb{background:#1e2a38;border-radius:2px}
@@ -745,6 +747,17 @@ export default function App() {
         <div style={{ borderTop: `1px solid ${C.border}`, marginTop: 60, padding: "24px 18px", textAlign: "center" }}>
           <p style={{ margin: "0 auto", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
             Dataskydd: Ingen data samlas in, lagras eller skickas till någon server – all information stannar lokalt i din webbläsare och försvinner när du stänger sidan.
+          </p>
+          <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
+            {IS_OFFLINE ? (
+              <>Offlineversion: Du använder en nedladdad kopia av guiden. Den gör inga anrop till internet, men kontrollera på sakskydd.se att du har den senaste versionen.</>
+            ) : (
+              <>
+                Offlineversion: Om ni hanterar känsliga uppgifter kan ni{" "}
+                <a href="/sakskydd-offline.html" download="sakskydd-offline.html" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>ladda ner guiden som en fil</a>
+                {" "}och öppna den i webbläsaren utan internetuppkoppling. Hela guiden finns i en enda HTML-fil.
+              </>
+            )}
           </p>
           <p style={{ margin: "10px auto 0", fontSize: 12, color: C.textDim, fontFamily: C.mono, lineHeight: 1.6, maxWidth: 520 }}>
             Disclaimer: Guiden är inte affilierad med Säkerhetspolisen eller Riksdagen och är baserad på öppen data och skall användas som stöd och vägledning, ej som ersättning för en korrekt säkerhetsskyddsanalys.
