@@ -30,7 +30,7 @@ Guiden är inte affilierad med Säkerhetspolisen eller Riksdagen och är baserad
 ## Källor
 
 - [Säkerhetsskyddslagen (2018:585)](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/)
-- [SÄPO PM – Vad är säkerhetskänslig verksamhet?](https://sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1709631405797/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf)
+- [SÄPO PM – Vad är säkerhetskänslig verksamhet?](https://www.sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1775821485477/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf)
 - [SÄPO Vägledning – Säkerhetsskyddsanalys](https://sakerhetspolisen.se/download/18.3baf70bf187108c7cf04b7/1681802201089/Sa%CC%88kerhetskyddsanalys_anpassad.pdf)
 
 ## Licens

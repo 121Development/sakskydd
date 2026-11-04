@@ -56,10 +56,10 @@ interface Perspective {
 }
 
 const SCREENING_A: Question[] = [
-  { id: "classified", text: "Hanterar ni säkerhetsskyddsklassificerade uppgifter eller uppgifter som ska säkerhetsskyddsklassificeras?", detail: "Uppgifter som rör säkerhetskänslig verksamhet och därför omfattas av sekretess enligt offentlighets- och sekretesslagen, eller skulle ha gjort det om lagen varit tillämplig. (1 kap. 2 § säkerhetsskyddslagen)" },
+  { id: "classified", text: "Hanterar ni säkerhetsskyddsklassificerade uppgifter eller uppgifter som ska säkerhetsskyddsklassificeras?", detail: "Uppgifter som rör säkerhetskänslig verksamhet och därför omfattas av sekretess enligt offentlighets- och sekretesslagen, eller skulle ha gjort det om lagen varit tillämplig (1 kap. 2 §). Uppgifter som omfattas av t.ex. utrikessekretess eller försvarssekretess (15 kap. 1–2 §§ OSL) eller 18 kap. 1, 2, 8, 12 eller 13 § OSL kan vara säkerhetsskyddsklassificerade. Även en sammanställning av öppna uppgifter kan bli det. Uppgifterna kan också ha tagits emot från någon annan, t.ex. inom totalförsvarssamverkan eller i ett ärende. Om ni enbart hanterar detta som leverantör enligt ett säkerhetsskyddsavtal med en kund bedriver ni i regel inte själva säkerhetskänslig verksamhet – se i stället frågan om leverantörsuppdrag i Del B." },
   { id: "international", text: "Omfattas ni av ett för Sverige förpliktande internationellt åtagande om säkerhetsskydd?", detail: "Till exempel krav som följer av internationell säkerhetsskyddssamverkan, såsom hantering av EU- eller NATO-klassificerade uppgifter. (1 kap. 1 §)" },
-  { id: "signal", text: "Förfogar ni över signalskyddsmaterial eller bedriver ni verksamhet med signalskydd?", detail: "Till exempel godkända kryptosystem eller andra funktioner för skydd av säkerhetskänslig information." },
-  { id: "secclass", text: "Har ni befattningar eller uppdrag som kräver säkerhetsprövning och placering i säkerhetsklass?", detail: "Säkerhetsklass kan bli aktuell för personer som deltar i säkerhetskänslig verksamhet och där befattningen kräver särskilt skydd." },
+  { id: "signal", text: "Förfogar ni över signalskyddsmaterial eller bedriver ni verksamhet med signalskydd?", detail: "Signalskyddsmaterial, signalskyddsnycklar eller signalskyddsbefattningar i ett av Försvarsmakten godkänt signalskyddssystem. Hanteringen kräver placering i lägst säkerhetsklass 3, vilket visar att verksamheten är säkerhetskänslig." },
+  { id: "secclass", text: "Har ni befattningar eller uppdrag som kräver säkerhetsprövning och placering i säkerhetsklass?", detail: "Har ni själva beslutat att befattningar i er egen verksamhet ska placeras i säkerhetsklass, har ni i praktiken redan bedömt att verksamheten är säkerhetskänslig. Om placeringen sker hos en kund enligt ett säkerhetsskyddsavtal räknas det i regel inte – se frågan om leverantörsuppdrag i Del B." },
 ];
 
 const SCREENING_B: Question[] = [
@@ -70,14 +70,14 @@ const SCREENING_B: Question[] = [
   { id: "damage_generating", text: "Kan en antagonistisk handling mot er verksamhet orsaka följdskador på andra verksamheter av betydelse för Sveriges säkerhet, exempelvis genom påverkan på liv, hälsa eller kritisk infrastruktur?", detail: "T.ex. kärntekniska verksamheter, stora dammar, kemiska industrier. (Skadegenererande verksamhet)" },
   { id: "economy", text: "Är er verksamhet väsentlig för Sveriges betalningsförmåga eller finansiella stabilitet på nationell nivå?", detail: "Till exempel centrala funktioner i betalningsinfrastrukturen eller andra verksamheter vars bortfall kan påverka Sveriges finansiella stabilitet nationellt." },
   { id: "secclass_decides", text: "Är ni en statlig myndighet som beslutar om placering i säkerhetsklass?", detail: "Om en statlig myndighet har fått mandat att besluta om placering i säkerhetsklass finns det anledning att analysera om verksamheten är av betydelse för Sveriges säkerhet." },
-  { id: "multiple_contracts", text: "Är ni leverantör till en eller flera verksamhetsutövare där uppdragen omfattas av säkerhetsskyddsavtal eller motsvarande säkerhetsskyddskrav?", detail: "Lagen gäller den som till någon del bedriver säkerhetskänslig verksamhet. En leverantör som utför en del av en säkerhetskänslig verksamhet, eller har flera sådana uppdrag, kan därför behöva analysera om även leverantören själv bedriver säkerhetskänslig verksamhet." },
+  { id: "multiple_contracts", text: "Har ni som leverantör flera uppdrag som omfattas av krav på säkerhetsskyddsavtal?", detail: "En leverantör med säkerhetsskyddsavtal bedriver i regel inte själv säkerhetskänslig verksamhet. Genom sina samlade uppdrag kan den ändå göra det, t.ex. vid driftstjänster till flera myndigheter eller omfattande infrastrukturlösningar. Det gäller särskilt när uppdragen är varaktiga och skadan vid ett angrepp mot leverantören är större än den som varje enskilt avtal bygger på." },
   { id: "protected_obj", text: "Har ni fått beslut om skyddsobjekt?", detail: "Skyddsobjekt innebär inte automatiskt att verksamheten är säkerhetskänslig enligt säkerhetsskyddslagen, men det är en stark anledning att göra en fördjupad bedömning." },
 ];
 
 const NATIONAL_Q: Question = {
   id: "national",
   text: "Kan ett antagonistiskt angrepp mot er verksamhet medföra skadekonsekvenser på nationell nivå?",
-  detail: "Nationella skadekonsekvenser kan vara störningar i eller bortfall av leveranser, tjänster eller funktioner som är nödvändiga för samhällets funktionalitet ur ett nationellt perspektiv. Det ska finnas ett orsakssamband mellan den antagonistiska handlingen och skadan för Sveriges säkerhet. Även en lokal verksamhet kan få nationella följdverkningar.",
+  detail: "Nationella skadekonsekvenser kan vara störningar i eller bortfall av leveranser, tjänster eller funktioner som är nödvändiga för samhällets funktionalitet ur ett nationellt perspektiv. Det ska finnas ett orsakssamband mellan den antagonistiska handlingen och skadan för Sveriges säkerhet, grundat i fakta eller underbyggda antaganden. Väg in om verksamheten har tillräcklig betydelse inom samhällsfunktionen. Om den är en av få aktörer pekar det mot ja; om den är en av många oberoende aktörer pekar det mot nej. Väg också in om det går att återgå till normalläge och om andra säkerhetskänsliga verksamheter påverkas. Även en lokal verksamhet kan få nationella följdverkningar. Bedöm alla beredskapslägen, inklusive höjd beredskap.",
 };
 
 const CATEGORIES: Category[] = [
@@ -103,8 +103,8 @@ const PROTECTION_TYPES: ProtectionType[] = [
     id: "anlaggningar", label: "Anläggningar, objekt, system, egendom och andra tillgångar", icon: "🏗",
     desc: "Anläggningar, objekt, system, egendom och andra tillgångar som är skyddsvärda ur säkerhetsskyddsperspektiv. Delas in i konsekvensnivå A–D utifrån den skada en antagonistisk handling kan medföra för Sveriges säkerhet.",
     levels: [
-      { id: "niva_a", label: "Nivå A – Synnerligen allvarlig", detail: "Kritiska funktioner slås ut, svårt att återgå" },
-      { id: "niva_b", label: "Nivå B – Allvarlig", detail: "Allvarliga begränsningar i Sveriges handlingsfrihet" },
+      { id: "niva_a", label: "Nivå A – Synnerligen allvarlig", detail: "Kritiska funktioner slås ut, mycket svårt att återgå" },
+      { id: "niva_b", label: "Nivå B – Allvarlig", detail: "Allvarliga begränsningar i Sveriges handlingsfrihet, svårt att återgå" },
       { id: "niva_c", label: "Nivå C – Inte obetydlig", detail: "Påtaglig påverkan, möjligt att återgå inom rimlig tid" },
       { id: "niva_d", label: "Nivå D – Ringa", detail: "Liten påverkan, relativt snabb återgång möjlig" },
     ],
@@ -123,11 +123,11 @@ const PERSPECTIVES: Perspective[] = [
 ];
 
 const ANALYSIS_STEPS = [
-  { num: 1, title: "Verksamhetsbeskrivning", ref: "2 kap. 2 § PMFS 2022:1", desc: "Beskriv hela verksamheten övergripande. Specificera vilka delar som är av betydelse för Sveriges säkerhet och utifrån vilken kategori. Motivera bedömningarna." },
-  { num: 2, title: "Identifiera och bedöma skyddsvärden", ref: "2 kap. 3–5 §§ PMFS 2022:1", desc: "Identifiera: (1) säkerhetsskyddsklassificerade uppgifter och deras klass, (2) anläggningar, objekt, system, egendom och andra tillgångar samt deras konsekvensnivå A–D, (3) uppgifter eller verksamhet som omfattas av internationellt åtagande. Bedöm varje skyddsvärde utifrån konfidentialitet, riktighet och tillgänglighet." },
-  { num: 3, title: "Säkerhetshot och dimensionerande antagonistiska förmågor", ref: "2 kap. 6–7 §§ PMFS 2022:1", desc: "Identifiera relevanta säkerhetshot kopplade till skyddsvärdena. Beakta exempelvis cyberangrepp, spionage, sabotage, terroristbrott och gråzonshandlingar. Om verksamheten behöver en beskrivning av dimensionerande antagonistiska förmågor bör verksamhetsutövaren kontakta sin tillsynsmyndighet, som i förekommande fall uppmärksammar Säkerhetspolisen på behovet." },
+  { num: 1, title: "Verksamhetsbeskrivning", ref: "2 kap. 2 § PMFS 2022:1", desc: "Beskriv hela verksamheten övergripande. Specificera vilka delar som är av betydelse för Sveriges säkerhet och utifrån vilken kategori. Motivera bedömningarna, och redovisa även delar som bedömts men inte ansetts säkerhetskänsliga." },
+  { num: 2, title: "Identifiera och bedöma skyddsvärden", ref: "2 kap. 3–5 §§ PMFS 2022:1", desc: "Identifiera: (1) säkerhetsskyddsklassificerade uppgifter och deras klass, (2) anläggningar, objekt, system, egendom och andra tillgångar samt deras konsekvensnivå A–D, (3) uppgifter eller verksamhet som omfattas av internationellt åtagande. Bedöm varje skyddsvärde utifrån konfidentialitet, riktighet och tillgänglighet, och beskriv interna och externa beroenden." },
+  { num: 3, title: "Säkerhetshot och dimensionerande antagonistiska förmågor", ref: "2 kap. 6–7 §§ PMFS 2022:1", desc: "Identifiera relevanta säkerhetshot kopplade till skyddsvärdena. Beakta exempelvis cyberangrepp, spionage, sabotage, terroristbrott och gråzonshandlingar. Om verksamheten behöver en beskrivning av dimensionerande antagonistiska förmågor bör verksamhetsutövaren kontakta sin tillsynsmyndighet, som i förekommande fall uppmärksammar Säkerhetspolisen på behovet. Analysen ska göras även om någon sådan beskrivning inte har tagits emot. Har ni fått en, ska den vara en miniminivå." },
   { num: 4, title: "Sårbarhetsbedömning", ref: "2 kap. 8 § PMFS 2022:1", desc: "Identifiera luckor i befintligt skydd i förhållande till författningskrav och antagonistiska förmågor. Tänk som en antagonist. Kan innefatta tekniska tester, granskning av rutiner, fysisk genomlysning och analys av tidigare incidenter." },
-  { num: 5, title: "Säkerhetsskyddsåtgärder och plan", ref: "2 kap. 9 §, 12 § PMFS 2022:1", desc: "Bestäm åtgärder inom informationssäkerhet, fysisk säkerhet och personalsäkerhet. Sammanställ dessa i en säkerhetsskyddsplan med ansvariga funktioner och tidplan. Säkerhetsskyddschefen bör leda och samordna arbetet, om sådan funktion ska finnas i verksamheten." },
+  { num: 5, title: "Säkerhetsskyddsåtgärder och plan", ref: "2 kap. 9 §, 12 § PMFS 2022:1", desc: "Bestäm åtgärder inom informationssäkerhet, fysisk säkerhet och personalsäkerhet. Åtgärderna ska vara spårbara till skyddsvärden, hot och sårbarheter och samverka som en helhet. Sammanställ dem i en säkerhetsskyddsplan med ansvarig funktion och tidplan för varje åtgärd. Planen förankras hos högsta chefen och fastställs av säkerhetsskyddschefen." },
 ];
 
 // Lagens lydelse som texten bygger på
@@ -323,7 +323,7 @@ export default function App() {
       ``,
       `## Femstegsmetoden – vad er analys ska innehålla`,
       ``,
-      `Säkerhetspolisens metod för säkerhetsskyddsanalys. Analysen ska fastställas av verksamhetens högsta chef och uppdateras **minst vartannat år** (2 kap. 10 § PMFS 2022:1).`,
+      `Säkerhetspolisens metod för säkerhetsskyddsanalys. Analysen ska fastställas av verksamhetens högsta chef och uppdateras vid behov, t.ex. vid nya skyddsvärden eller när ni tar emot en beskrivning av dimensionerande antagonistiska förmågor, och **minst vartannat år** (2 kap. 10 § PMFS 2022:1).`,
       ``,
       ...ANALYSIS_STEPS.map(s => `${s.num}. **${s.title}** *(${s.ref})* — ${s.desc}`),
       ``,
@@ -476,7 +476,7 @@ export default function App() {
                     {directYes && "En eller flera starka indikationer finns. Nästa steg är att dokumentera en säkerhetsskyddsanalys och vid behov kontakta tillsynsmyndigheten."}
                     {isIndicated && "Ett antagonistiskt angrepp kan enligt era svar ge nationella skadekonsekvenser. Ni bör gå vidare med en dokumenterad säkerhetsskyddsanalys."}
                     {isUnclear && "Indikatorer finns, men svaren ger inte stöd för att nationella skadekonsekvenser föreligger. Bedömningen bör ändå dokumenteras och omprövas vid förändringar i verksamheten – ni kan gå vidare och strukturera underlaget."}
-                    {isNotApplicable && "Inga tydliga indikationer har identifierats utifrån nuvarande svar. Det ersätter inte en egen bedömning och situationen kan förändras över tid."}
+                    {isNotApplicable && "Inga tydliga indikationer har identifierats utifrån nuvarande svar. Säkerhetspolisen rekommenderar att även slutsatsen att ingen säkerhetskänslig verksamhet bedrivs dokumenteras med motivering. Det ersätter inte en egen bedömning och situationen kan förändras över tid."}
                   </p>
                 </div>
               )}
@@ -677,7 +677,7 @@ export default function App() {
                   <Tag>Säkerhetspolisens metod för säkerhetsskyddsanalys</Tag>
                   <h3 style={{ margin: "8px 0 4px", fontSize: 18, fontWeight: 500 }}>Femstegsmetoden – vad er analys ska innehålla</h3>
                   <p style={{ margin: 0, fontSize: 14, color: C.textDim, lineHeight: 1.5 }}>
-                    Analysen ska fastställas av verksamhetens högsta chef och uppdateras <strong style={{ color: C.textMid }}>minst vartannat år</strong>. (2 kap. 10 § PMFS 2022:1)
+                    Analysen ska fastställas av verksamhetens högsta chef och uppdateras vid behov, t.ex. vid nya skyddsvärden eller när ni tar emot en beskrivning av dimensionerande antagonistiska förmågor, och <strong style={{ color: C.textMid }}>minst vartannat år</strong>. (2 kap. 10 § PMFS 2022:1)
                   </p>
                 </div>
                 {ANALYSIS_STEPS.map((s) => (
@@ -753,7 +753,7 @@ export default function App() {
             Källor:{" "}
             <a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/sakerhetsskyddslag-2018585_sfs-2018-585/" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>Säkerhetsskyddslagen (2018:585) {LAW_VERSION}</a>
             {" · "}
-            <a href="https://sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1709631405797/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO PM – Vad är säkerhetskänslig verksamhet?</a>
+            <a href="https://www.sakerhetspolisen.se/download/18.725e108e18dd2b2650a85/1775821485477/Vad%20%C3%A4r%20s%C3%A4kerhetsk%C3%A4nslig%20verksamhet.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO PM – Vad är säkerhetskänslig verksamhet?</a>
             {" · "}
             <a href="https://sakerhetspolisen.se/download/18.3baf70bf187108c7cf04b7/1681802201089/Sa%CC%88kerhetskyddsanalys_anpassad.pdf" target="_blank" rel="noopener noreferrer" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>SÄPO Vägledning – Säkerhetsskyddsanalys</a>
           </p>
