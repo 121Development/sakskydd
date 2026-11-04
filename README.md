@@ -12,7 +12,7 @@ Webbverktyg för att bedöma om en verksamhet bedriver säkerhetskänslig verksa
 - **Resultat med bedömning** — sammanställning med Femstegsmetoden, skyldigheter enligt lagen (i lydelse t.o.m. SFS 2026:764) och sanktionsavgifter
 - **Markdown-export** — ladda ner bedömningen som Markdown-fil
 - **Utskriftsvänlig** — anpassad för print via webbläsaren
-- **Offlineversion** — hela guiden som en enda HTML-fil (`/sakskydd-offline.html`) som kan öppnas i webbläsaren utan internetuppkoppling
+- **Offlineversion** — hela guiden som en enda HTML-fil (`/sakskydd-offline`) som kan öppnas i webbläsaren utan internetuppkoppling
 
 ## Teknikstack
 

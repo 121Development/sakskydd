@@ -754,7 +754,7 @@ export default function App() {
             ) : (
               <>
                 Offlineversion: Om ni hanterar känsliga uppgifter kan ni{" "}
-                <a href="/sakskydd-offline.html" download="sakskydd-offline.html" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>ladda ner guiden som en fil</a>
+                <a href="/sakskydd-offline" download="sakskydd-offline.html" style={{ color: C.textDim, textDecoration: "none", borderBottom: `1px solid ${C.border}` }}>ladda ner guiden som en fil</a>
                 {" "}och öppna den i webbläsaren utan internetuppkoppling. Hela guiden finns i en enda HTML-fil.
               </>
             )}
